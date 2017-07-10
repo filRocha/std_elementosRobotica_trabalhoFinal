@@ -4,6 +4,20 @@ import roslib
 import math
 #import sys
 
+#================ TRABALHO FINAL DE ELEMENTOS DE ROBOTICA ========================================
+
+# Os limites das juntas do robo sao (em graus e radianos em parenteses):
+	# theta_1 = -180 (-3.14)	a 	180 (3.14)
+	# theta_2 = -90	(-1.57)		a 	150 (2.62)
+	# theta_3 = -180 (-3.14) 	a 	75 (1.30)
+	# theta_4 = -400 (-6.98)	a 	400 (6.98)
+	# theta_5 = -125 (-2.18)	a 	120 (2.1)
+	# theta_6 = -400 (-6.98)	a 	400 (6.98)
+
+
+#=================================================================================================
+
+
 #imports de mensagens
 from geometry_msgs.msg import Accel
 
@@ -15,7 +29,7 @@ class ControleRobo():
 	def __init__(self):
 
 		#Enviando uma informacao para o usuario
-		rospy.loginfo("No de Controle do Robo ABB IRB inicializado")
+		rospy.loginfo("Node de Controle do Robo ABB IRB inicializado")
 
 		#Variavel que carrega a posicao atual das juntas em radianos
 		self.posJunta = [0 for x in range(6)]
@@ -39,9 +53,11 @@ class ControleRobo():
 		while not rospy.is_shutdown():
 			
 			for x in range(0,6):
-				comandoJunta[x]=-2
+				comandoJunta[x]=-0.5
 
 			print(comandoJunta)
+
+
 
 			self.aplicarComandoJuntas(comandoJunta)
 
@@ -78,13 +94,63 @@ class ControleRobo():
 		#Variavel que receber o comando a ser enviado para as juntas
 		comandoPub=Accel()
 
+
+	# theta_1 = -180 (-3.14)	a 	180 (3.14)
+	# theta_2 = -90	(-1.57)		a 	150 (2.62)
+	# theta_3 = -180 (-3.14) 	a 	75 (1.30)
+	# theta_4 = -400 (-6.98)	a 	400 (6.98)
+	# theta_5 = -125 (-2.18)	a 	120 (2.1)
+	# theta_6 = -400 (-6.98)	a 	400 (6.98)
+	
 		#Montando a variavel que sera publicada
-		comandoPub.linear.x=data[0]
-		comandoPub.linear.y=data[1]
-		comandoPub.linear.z=data[2]
-		comandoPub.angular.x=data[3]
-		comandoPub.angular.y=data[4]
-		comandoPub.angular.z=data[5]
+
+		# Theta 1
+		if data[0] < -3.14:
+			comandoPub.linear.x = -3.14
+		elif data[0] > 3.14:
+			comandoPub.linear.x = 3.14
+		else:
+			comandoPub.linear.x = data[0]
+
+		# Theta 2
+		if data[1] < -1.57:
+			comandoPub.linear.y = -1.57
+		elif data[1] > 2.62:
+			comandoPub.linear.y = 2.62
+		else:
+			comandoPub.linear.y = data[1]
+
+		# Theta 3
+		if data[2] < -3.14:
+			comandoPub.linear.z = -3.14
+		elif data[2] > 1.30:
+			comandoPub.linear.z = 1.30
+		else: 
+			comandoPub.linear.z = data[2]
+
+		# Theta 4
+		if data[3] < -6.98:
+			comandoPub.angular.x = -6.98
+		elif data[3] > 6.98:
+			comandoPub.angular.x = 6.98
+		else: 
+			comandoPub.angular.x = data[3]
+
+		# Theta 5
+		if data[4] < -2.18:
+			comandoPub.angular.y = -2.18
+		elif data[4] > 2.1:
+			comandoPub.angular.y = 2.1
+		else: 
+			comandoPub.angular.y = data[4]
+
+		# Theta 6
+		if data[5] < -6.98:
+			comandoPub.angular.z = -6.98
+		elif data[5] > 6.98:
+			comandoPub.angular.z = 6.98
+		else: 
+			comandoPub.angular.z = data[5]
 
 		#Publicando o comando a ser enviado
 		self.pub.publish(comandoPub)		
