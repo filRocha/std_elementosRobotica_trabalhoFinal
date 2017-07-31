@@ -56,7 +56,9 @@ class ControleRobo():
 				comandoJunta[x]=0.5
 
 			print(comandoJunta)
-
+			
+			#vEtor onde estao as posicoes das juntas
+			#self.posJuntaGraus[]
 
 
 			self.aplicarComandoJuntas(comandoJunta)
