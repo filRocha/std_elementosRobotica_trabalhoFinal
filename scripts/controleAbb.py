@@ -53,7 +53,7 @@ class ControleRobo():
 		while not rospy.is_shutdown():
 			
 			for x in range(0,6):
-				comandoJunta[x]=-0.5
+				comandoJunta[x]=0.5
 
 			print(comandoJunta)
 
