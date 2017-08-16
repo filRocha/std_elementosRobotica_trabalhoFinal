@@ -52,8 +52,17 @@ class ControleRobo():
 #====================================================================================================
 		while not rospy.is_shutdown():
 			
-			for x in range(0,6):
-				comandoJunta[x]=0.5
+			theta1=-0.5
+			theta2=-0.5
+			theta3=-0.5
+
+
+			comandoJunta[0]=theta1
+			comandoJunta[1]=theta2
+			comandoJunta[2]=theta3
+			comandoJunta[3]=0
+			comandoJunta[4]=0
+			comandoJunta[5]=0
 
 			print(comandoJunta)
 			
