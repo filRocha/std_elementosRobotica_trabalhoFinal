@@ -51,18 +51,14 @@ class ControleRobo():
 		#SEU CODIGO VAI AQUI
 #====================================================================================================
 		while not rospy.is_shutdown():
-			
-			theta1=-0.5
-			theta2=-0.5
-			theta3=-0.5
 
 
-			comandoJunta[0]=theta1
-			comandoJunta[1]=theta2
-			comandoJunta[2]=theta3
-			comandoJunta[3]=0
-			comandoJunta[4]=0
-			comandoJunta[5]=0
+			comandoJunta[0]=-0.5
+			comandoJunta[1]=-0.5
+			comandoJunta[2]=-0.5
+			comandoJunta[3]=-0.5
+			comandoJunta[4]=-0.5
+			comandoJunta[5]=-0.5
 
 			print(comandoJunta)
 			
