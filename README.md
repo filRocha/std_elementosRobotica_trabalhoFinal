@@ -6,7 +6,7 @@ Contém os arquivos necessários ao Trabalho Prático do controle de posição d
 
 ** Este repositório é um pacote feito para o ROS Kinect. Eventuais bugs poderão aparecer em outras versões. **
 
-** Utilizado o pacote python-catkin-tools para compilar este pacote **
+** Utilizado o pacote python-catkin-tools para compilação deste **
 
 ** Interface utilizada para comunicar ROS<->V-REP: https://github.com/CoppeliaRobotics/v_repExtRosInterface **
 
